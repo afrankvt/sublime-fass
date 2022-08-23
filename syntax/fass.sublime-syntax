@@ -6,11 +6,15 @@ file_extensions:
   - fass
 scope: source.less
 
+variables:
+  var: '[A-Za-z_][A-Za-z0-9_]*'
+
 contexts:
   main:
     - include: comment-block
     - include: comment-line
     - include: operators
+    - include: interpolation
 
   comment-block:
     - match: /\*
@@ -46,3 +50,11 @@ contexts:
 
     - scope: meta.brackets.fan
       match: \{|\}|\(|\)|\[|\]|\|
+
+  interpolation:
+    - scope: variable.other.interpolated-expr.fass
+      match: '\${{var}}'
+    - scope: variable.other.interpolated-expr.fass
+      match: '\$\{.+?\}'
+    - scope: invalid.illegal.interpolation.fass
+      match: '\$\{\w*'

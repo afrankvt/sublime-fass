@@ -1,0 +1,48 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: Fass
+file_extensions:
+  - fass
+scope: source.less
+
+contexts:
+  main:
+    - include: comment-block
+    - include: comment-line
+    - include: operators
+
+  comment-block:
+    - match: /\*
+      push:
+        - meta_scope: comment.block.fass
+        - include: multiline-comment
+        - match: \*/
+          pop: true
+        - match: .
+
+  comment-line:
+    - scope: comment.line.double-slash.fass
+      match: (//).*
+
+  operators:
+    - scope: keyword.operator.using.fass
+      match: '@using'
+
+    - scope: keyword.operator.relational.symbol.fass
+      match: '<(=|=>)?|>=?'
+
+    - scope: keyword.operator.assign.fass
+      match: ':?='
+
+    - scope: keyword.operator.math.fass
+      match: '[+*/%-]=?'
+
+    - scope: keyword.operator.self.fass
+      match: '&'
+
+    - scope: punctuation.terminator.fass
+      match: ';'
+
+    - scope: meta.brackets.fan
+      match: \{|\}|\(|\)|\[|\]|\|

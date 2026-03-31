@@ -4,7 +4,7 @@
 name: Fass
 file_extensions:
   - fass
-scope: source.less
+scope: source.fass
 
 variables:
   var: '[A-Za-z_][A-Za-z0-9_]*'
@@ -41,6 +41,9 @@ contexts:
 
     - scope: keyword.operator.math.fass
       match: '[+*/%-]=?'
+
+    - scope: keyword.operator.dot.fass
+      match: '\.'
 
     - scope: keyword.operator.self.fass
       match: '&'
